@@ -1,0 +1,15 @@
+C:\Users\Frankenstain\source\repos\Test\Pair\bin\Debug\net6.0\Pair.exe
+C:\Users\Frankenstain\source\repos\Test\Pair\bin\Debug\net6.0\Pair.deps.json
+C:\Users\Frankenstain\source\repos\Test\Pair\bin\Debug\net6.0\Pair.runtimeconfig.json
+C:\Users\Frankenstain\source\repos\Test\Pair\bin\Debug\net6.0\Pair.dll
+C:\Users\Frankenstain\source\repos\Test\Pair\bin\Debug\net6.0\ref\Pair.dll
+C:\Users\Frankenstain\source\repos\Test\Pair\bin\Debug\net6.0\Pair.pdb
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.csproj.AssemblyReference.cache
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.AssemblyInfoInputs.cache
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.AssemblyInfo.cs
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.csproj.CoreCompileInputs.cache
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.dll
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\ref\Pair.dll
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.pdb
+C:\Users\Frankenstain\source\repos\Test\Pair\obj\Debug\net6.0\Pair.genruntimeconfig.cache
