@@ -13,20 +13,23 @@ var clothes4 = new Jacket() { Cost = "9300", Size = 30 };
 var clothes5 = new T_shirt() { Cost = "9400", Size = 28 };
 var clothes6 = new T_shirt() { Cost = "9500", Size = 28 };
 
-Magazine list = new Magazine();
-Console.WriteLine(list.AddClothes(clothes1));
-Console.WriteLine(list.AddClothes(clothes2)); 
-Console.WriteLine(list.AddClothes(clothes3));
-Console.WriteLine(list.AddClothes(clothes4));
-Console.WriteLine(list.AddClothes(clothes5));
-Console.WriteLine(list.AddClothes(clothes6));
+var list = new Magazine();
+var mgView = new MagazineView();
 
-Console.WriteLine(list.UpdateClothes(clothes1, "1000000"));
+mgView.PrintConsole(list.AddClothes(clothes1));
+mgView.PrintConsole(list.AddClothes(clothes2)); 
+mgView.PrintConsole(list.AddClothes(clothes3));
+mgView.PrintConsole(list.AddClothes(clothes4));
+mgView.PrintConsole(list.AddClothes(clothes5));
+mgView.PrintConsole(list.AddClothes(clothes6));
 
-Console.WriteLine(list.DeleteClothes(clothes6));
+mgView.PrintConsole(list.UpdateClothes(clothes1, "1000000"));
 
-Console.WriteLine(list.GetPopular());
-Console.WriteLine(list.GetAllClothes());
+mgView.PrintConsole(list.DeleteClothes(clothes6));
+
+mgView.PrintConsole(list.GetPopular());
+
+mgView.PrintConsole(list.GetAllClothes());
 public class Magazine
 {
     List<Clothes> clothes = new List<Clothes>();
@@ -71,4 +74,5 @@ public class Magazine
         }
         return sb.ToString();
     }
+
 }
