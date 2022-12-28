@@ -1,3 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-Console.WriteLine("kekw");
+﻿using Test;
+
+var path = new FlyPath(new Airplane());
+Console.WriteLine(path);
+var path1 = new FlyPath(new Rocket());
+Console.WriteLine(path1);
