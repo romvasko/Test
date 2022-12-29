@@ -1,0 +1,15 @@
+C:\Users\Frankenstain\source\repos\Test\Del\bin\Debug\net6.0\Del.exe
+C:\Users\Frankenstain\source\repos\Test\Del\bin\Debug\net6.0\Del.deps.json
+C:\Users\Frankenstain\source\repos\Test\Del\bin\Debug\net6.0\Del.runtimeconfig.json
+C:\Users\Frankenstain\source\repos\Test\Del\bin\Debug\net6.0\Del.dll
+C:\Users\Frankenstain\source\repos\Test\Del\bin\Debug\net6.0\ref\Del.dll
+C:\Users\Frankenstain\source\repos\Test\Del\bin\Debug\net6.0\Del.pdb
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.csproj.AssemblyReference.cache
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.AssemblyInfoInputs.cache
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.AssemblyInfo.cs
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.csproj.CoreCompileInputs.cache
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.dll
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\ref\Del.dll
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.pdb
+C:\Users\Frankenstain\source\repos\Test\Del\obj\Debug\net6.0\Del.genruntimeconfig.cache
