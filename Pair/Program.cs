@@ -16,43 +16,47 @@ var clothes6 = new T_shirt() { Cost = "9500", Size = 28 };
 var list = new Magazine();
 var mgView = new MagazineView();
 
-mgView.PrintConsole(list.AddClothes(clothes1));
-mgView.PrintConsole(list.AddClothes(clothes2)); 
-mgView.PrintConsole(list.AddClothes(clothes3));
-mgView.PrintConsole(list.AddClothes(clothes4));
-mgView.PrintConsole(list.AddClothes(clothes5));
-mgView.PrintConsole(list.AddClothes(clothes6));
+ConsoleDelegate consoleDelegate = (string msg) => {Console.WriteLine(msg);};
+list.AddClothes(clothes1, consoleDelegate);
+list.AddClothes(clothes2, consoleDelegate); 
+list.AddClothes(clothes3, consoleDelegate);
+list.AddClothes(clothes4, consoleDelegate);
+list.AddClothes(clothes5, consoleDelegate);
+list.AddClothes(clothes6, consoleDelegate);
 
-mgView.PrintConsole(list.UpdateClothes(clothes1, "1000000"));
+list.UpdateClothes(clothes1, "1000000", consoleDelegate);
 
-mgView.PrintConsole(list.DeleteClothes(clothes6));
+list.DeleteClothes(clothes6, consoleDelegate);
 
-mgView.PrintConsole(list.GetPopular());
+list.GetPopular(consoleDelegate);
 
-mgView.PrintConsole(list.GetAllClothes());
+list.GetAllClothes(consoleDelegate);
+
+void Print(string msg) => Console.WriteLine(msg);
+public delegate void ConsoleDelegate(string msg);
 public class Magazine
 {
     List<Clothes> clothes = new List<Clothes>();
 
-    public string AddClothes(Clothes clothes)
+    public void AddClothes(Clothes clothes, ConsoleDelegate output)
     {
         this.clothes.Add(clothes);
-        return $"Clothe added: {clothes.GetInfo()}";
+        output($"Clothe added: {clothes.GetInfo()}");
     }
-    public string DeleteClothes(Clothes clothes)
+    public void DeleteClothes(Clothes clothes, ConsoleDelegate output)
     {
         this.clothes.Remove(clothes);
-        return $"Clothe deleted: {clothes.GetInfo()}";
+        output($"Clothe deleted: {clothes.GetInfo()}");
     }
 
-    public string UpdateClothes(Clothes clothes, string newValue)
+    public void UpdateClothes(Clothes clothes, string newValue, ConsoleDelegate output)
     {
         int i = this.clothes.IndexOf(clothes);
         this.clothes[i].UpdateCost(newValue);
-        return $"Clothe updated: {this.clothes[i].GetInfo()}";
+        output($"Clothe updated: {this.clothes[i].GetInfo()}");
     }
 
-    public string GetPopular()
+    public void GetPopular(ConsoleDelegate output)
     {
         int[] array = new int[this.clothes.Count];
         int i = 0;
@@ -62,9 +66,9 @@ public class Magazine
             i++;
         }
         var result = array.GroupBy(x => x).OrderByDescending(x => x.Count()).FirstOrDefault().Key;
-        return $"Most popular size : {result}\n";
+        output($"Most popular size : {result}\n");
     }
-    public string GetAllClothes()
+    public void GetAllClothes(ConsoleDelegate output)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("List of all clothes:\n");
@@ -72,7 +76,7 @@ public class Magazine
         {
            sb.Append(ch.GetInfo());
         }
-        return sb.ToString();
+        output(sb.ToString());
     }
 
 }
