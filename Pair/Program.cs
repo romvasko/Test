@@ -17,6 +17,8 @@ var list = new Magazine();
 var mgView = new MagazineView();
 
 ConsoleDelegate consoleDelegate = (string msg) => {Console.WriteLine(msg);};
+
+
 list.AddClothes(clothes1, consoleDelegate);
 list.AddClothes(clothes2, consoleDelegate); 
 list.AddClothes(clothes3, consoleDelegate);
@@ -32,7 +34,6 @@ list.GetPopular(consoleDelegate);
 
 list.GetAllClothes(consoleDelegate);
 
-void Print(string msg) => Console.WriteLine(msg);
 public delegate void ConsoleDelegate(string msg);
 public class Magazine
 {
