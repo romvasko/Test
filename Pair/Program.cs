@@ -38,11 +38,17 @@ public delegate void ConsoleDelegate(string msg);
 public class Magazine
 {
     List<Clothes> clothes = new List<Clothes>();
-
-    public void AddClothes(Clothes clothes, ConsoleDelegate output)
+    public event ConsoleDelegate OnStorageFull;
+    public int AddClothes(Clothes clothes, ConsoleDelegate output)
     {
+        OnStorageFull = output;
+        if (this.clothes.Count >= 2) {
+            OnStorageFull("Storage is full");
+            return 0;
+        }
         this.clothes.Add(clothes);
         output($"Clothe added: {clothes.GetInfo()}");
+        return 0;
     }
     public void DeleteClothes(Clothes clothes, ConsoleDelegate output)
     {
