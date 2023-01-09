@@ -13,33 +13,36 @@ var clothes4 = new Jacket() { Cost = "9300", Size = 30 };
 var clothes5 = new T_shirt() { Cost = "9400", Size = 28 };
 var clothes6 = new T_shirt() { Cost = "9500", Size = 28 };
 
-var list = new Magazine();
+var list = new Magazine((x) => Console.WriteLine(x));
 var mgView = new MagazineView();
 
-Action<string> consoleDelegate = (x) => Console.WriteLine(x);
+list.OnStorageFull += (x) => Console.WriteLine(x);
 
-list.AddClothes(clothes1, consoleDelegate);
-list.AddClothes(clothes2, consoleDelegate); 
-list.AddClothes(clothes3, consoleDelegate);
-list.AddClothes(clothes4, consoleDelegate);
-list.AddClothes(clothes5, consoleDelegate);
-list.AddClothes(clothes6, consoleDelegate);
+list.AddClothes(clothes1);
+list.AddClothes(clothes2); 
+list.AddClothes(clothes3);
+list.AddClothes(clothes4);
+list.AddClothes(clothes5);
+list.AddClothes(clothes6);
 
-list.UpdateClothes(clothes1, "1000000", consoleDelegate);
+list.UpdateClothes(clothes1, "1000000");
 
-list.DeleteClothes(clothes6, consoleDelegate);
+list.DeleteClothes(clothes6);
 
-list.GetPopular(consoleDelegate);
+list.GetPopular();
 
-list.GetAllClothes(consoleDelegate);
+list.GetAllClothes();
 
 public class Magazine
 {
     List<Clothes> clothes = new List<Clothes>();
+    private Action<string> output;
     public event Action<string> OnStorageFull;
-    public int AddClothes(Clothes clothes, Action<string> output)
+    public Magazine(Action<string> action) {
+        output = action;
+    }
+    public int AddClothes(Clothes clothes)
     {
-        OnStorageFull = output;
         if (this.clothes.Count >= 2) {
             OnStorageFull("Storage is full");
             return 0;
@@ -48,20 +51,20 @@ public class Magazine
         output($"Clothe added: {clothes.GetInfo()}");
         return 0;
     }
-    public void DeleteClothes(Clothes clothes, Action<string> output)
+    public void DeleteClothes(Clothes clothes )
     {
         this.clothes.Remove(clothes);
         output($"Clothe deleted: {clothes.GetInfo()}");
     }
 
-    public void UpdateClothes(Clothes clothes, string newValue, Action<string> output)
+    public void UpdateClothes(Clothes clothes, string newValue )
     {
         int i = this.clothes.IndexOf(clothes);
         this.clothes[i].UpdateCost(newValue);
         output($"Clothe updated: {this.clothes[i].GetInfo()}");
     }
 
-    public void GetPopular(Action<string> output)
+    public void GetPopular()
     {
         int[] array = new int[this.clothes.Count];
         int i = 0;
@@ -73,7 +76,7 @@ public class Magazine
         var result = array.GroupBy(x => x).OrderByDescending(x => x.Count()).FirstOrDefault().Key;
         output($"Most popular size : {result}\n");
     }
-    public void GetAllClothes(Action<string> output)
+    public void GetAllClothes()
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("List of all clothes:\n");
