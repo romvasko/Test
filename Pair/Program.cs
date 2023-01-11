@@ -12,6 +12,7 @@ var clothes3 = new T_shirt() { Cost = "820", Size = 29 };
 var clothes4 = new Jacket() { Cost = "9300", Size = 30 };
 var clothes5 = new T_shirt() { Cost = "9400", Size = 28 };
 var clothes6 = new T_shirt() { Cost = "9500", Size = 28 };
+var clothes7 = new T_shirt() { Cost = "9500000", Size = 280000 };
 
 var list = new Magazine((x) => Console.WriteLine(x));
 var mgView = new MagazineView();
@@ -26,8 +27,10 @@ list.AddClothes(clothes5);
 list.AddClothes(clothes6);
 
 list.UpdateClothes(clothes1, "1000000");
+list.UpdateClothes(clothes5, "1000000");
 
-list.DeleteClothes(clothes6);
+list.DeleteClothes(clothes2);
+list.DeleteClothes(clothes7);
 
 list.GetPopular();
 
@@ -41,27 +44,46 @@ public class Magazine
     public Magazine(Action<string> action) {
         output = action;
     }
-    public int AddClothes(Clothes clothes)
+    public void AddClothes(Clothes clothes)
     {
-        if (this.clothes.Count >= 2) {
-            OnStorageFull("Storage is full");
-            return 0;
+        try
+        {     
+            if (this.clothes.Count >= 2) { throw new OnStorageFullException("Storage is full"); }
+            this.clothes.Add(clothes);
+            output($"Clothe added: {clothes.GetInfo()}");
         }
-        this.clothes.Add(clothes);
-        output($"Clothe added: {clothes.GetInfo()}");
-        return 0;
+        catch (OnStorageFullException ex)
+        {
+            OnStorageFull(ex.Message);
+        }
     }
-    public void DeleteClothes(Clothes clothes )
+    public void DeleteClothes(Clothes clothes)
     {
-        this.clothes.Remove(clothes);
-        output($"Clothe deleted: {clothes.GetInfo()}");
+        try
+        {
+            if (!this.clothes.Remove(clothes)) { throw new OnDeleteException($"Clothe not in the list: {clothes.GetInfo()}"); }
+            
+            output($"Clothe deleted: {clothes.GetInfo()}");
+        }
+        catch (OnDeleteException ex)
+        {
+            output(ex.Message);
+        }
     }
 
     public void UpdateClothes(Clothes clothes, string newValue )
     {
-        int i = this.clothes.IndexOf(clothes);
-        this.clothes[i].UpdateCost(newValue);
-        output($"Clothe updated: {this.clothes[i].GetInfo()}");
+        try
+        {
+            int i = this.clothes.IndexOf(clothes);
+            if (i == -1) { throw new OnUpdateException($"Clothe not in the list: {clothes.GetInfo()} update failed"); }
+            this.clothes[i].UpdateCost(newValue);
+            output($"Clothe updated: {this.clothes[i].GetInfo()}");
+        }
+        catch (OnUpdateException ex)
+        {
+            output(ex.Message);
+        }
     }
 
     public void GetPopular()

@@ -7,100 +7,38 @@ namespace ConsoleApp2
 
 	class Program
 	{
-		delegate void PrintConsole(string s);//* -> place in Heap
+	
 
 
 		static void Main(string[] args)
 		{
-			Retailer pub = new Retailer();
-			View view = new View();
+			//DateTime a = DateTime.Now;
+			//DateTime b = DateTime.UtcNow;
 
-			PrintConsole printConsole;
-            
-			List<INotifyable> listOfCustomers = new List<INotifyable>();
-			listOfCustomers.Add(new Customer("Tommy", view));
-			listOfCustomers.Add(new ForeignCustomer("Jim", view));
+			//Console.WriteLine(a + " " + b);
+			//Test<DateTime>.Swap(ref a, ref b);
+			//Console.WriteLine(a + " " + b);
 
-			foreach (var cust in listOfCustomers)
-			{
-				pub.OnIphoneAppers += cust.Notify;
-			}
+			//var c = 6.06;
+			//var d = 7.07;
 
-			pub.Raise();
+			//Console.WriteLine(c + " " + d);
+			//Test<double>.Swap(ref c, ref d);
+			//Console.WriteLine(c + " " + d);
+
+
 		}
 
-	}
-
-	public interface IPrintable
-    {
-		void Print(string s);
-    }
-
-    class View : IPrintable
-    {
-        public void Print(string name)
+		class Test<T>
         {
-			Console.WriteLine($"Text to {name} if IPhone appers");
-		}
-    }
-    class Retailer
-	{
-		public event Action OnIphoneAppers;
 
-		public void Raise()
-		{
-			var day = DateTime.Now;
-			while (true)
-			{
-				Console.WriteLine($"Today is {day}");
-				if (day.Day == 29)
-				{
-					OnIphoneAppers();
-				}
+            public static void Swap<T>(ref T value1,ref T value2) where T : struct
+            {
+				T temp = value1;
+                value1 = value2;
+				value2 = temp;
+            }
+        }
 
-				day = day.AddDays(1);
-
-				Thread.Sleep(500);
-			}
-		}
-	}
-
-	interface INotifyable
-	{
-		void Notify();
-	}
-
-	class Customer : INotifyable 
-	{
-		public string name;
-		IPrintable view;
-		public Customer(string name, IPrintable v)
-		{
-			this.name = name;
-			view = v;
-			
-		}
-
-		public void Notify()
-		{
-			view.Print(name);
-		}
-
-    }
-
-	class ForeignCustomer : INotifyable
-	{
-		public string name;
-		IPrintable view;
-		public ForeignCustomer(string name, IPrintable v)
-		{
-			this.name = name;
-			view = v;
-		}
-
-		public void Notify()
-		{
-			view.Print(name);
-		}
 	}
 }
